@@ -6,6 +6,7 @@ class Game extends React.Component {
   state = {
     questions: [],
     currIndex: 0,
+    showAnswersColor: false,
   };
 
   componentDidMount() {
@@ -16,6 +17,10 @@ class Game extends React.Component {
     localStorage.removeItem('token');
     const { history } = this.props;
     return history.push('/');
+  };
+
+  onClickAnswer = () => {
+    this.setState({ showAnswersColor: true });
   };
 
   requestQuestionsAndAnswers = async () => {
@@ -38,6 +43,7 @@ class Game extends React.Component {
     const {
       questions,
       currIndex,
+      showAnswersColor,
     } = this.state;
     const currQuestion = questions[currIndex];
     if (!currQuestion) {
@@ -63,6 +69,9 @@ class Game extends React.Component {
         <p data-testid="question-text">{ currQuestion.question }</p>
         <div data-testid="answer-options">
           {randomAnswers.map(({ text, isCorrect }) => {
+            const style = {
+              border: `3px solid ${isCorrect ? 'rgb(6, 240, 15)' : 'red'}`,
+            };
             if (!isCorrect) {
               index += 1;
             }
@@ -70,6 +79,8 @@ class Game extends React.Component {
               <button
                 key={ text }
                 data-testid={ isCorrect ? 'correct-answer' : `wrong-answer-${index - 1}` }
+                onClick={ this.onClickAnswer }
+                style={ showAnswersColor ? style : {} }
               >
                 { text }
               </button>
