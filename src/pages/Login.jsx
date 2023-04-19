@@ -3,7 +3,7 @@ import React from 'react';
 class Login extends React.Component {
   state = {
     isButtonDisabled: true,
-    name: '',
+    playerName: '',
     email: '',
   };
 
@@ -12,10 +12,10 @@ class Login extends React.Component {
     this.setState({
       [name]: value,
     }, () => {
-      const { name, email } = this.state;
+      const { playerName, email } = this.state;
       const minLenghtName = 2;
       const emailValidation = email.includes('.com') && email.includes('@');
-      if (name.length >= minLenghtName && emailValidation) {
+      if (playerName.length >= minLenghtName && emailValidation) {
         this.setState({
           isButtonDisabled: false,
         });
@@ -25,14 +25,14 @@ class Login extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { history, dispatch } = this.props;
-    const { email } = this.state;
-    dispatch(addUser(email));
-    history.push('/Game');
+    // const { history, dispatch } = this.props;
+    // const { email } = this.state;
+    // dispatch(addUser(email));
+    // history.push('/Game');
   };
 
   render() {
-    const { name, email, isButtonDisabled } = this.state;
+    const { playerName, email, isButtonDisabled } = this.state;
     return (
       <div>
         <form>
@@ -42,8 +42,8 @@ class Login extends React.Component {
             className="input-name"
             data-testid="input-player-name"
             onChange={ this.handleChange }
-            name="name"
-            value={ name }
+            name="playerName"
+            value={ playerName }
           />
 
           <input
@@ -61,7 +61,7 @@ class Login extends React.Component {
             disabled={ isButtonDisabled }
             data-testid="btn-play"
             type="submit"
-            onClick={ (event) => this.handleClick(event) }
+            onClick={ (event) => this.handleSubmit(event) }
           >
             Jogar
           </button>
