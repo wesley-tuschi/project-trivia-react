@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+import { requestTokenFromApi } from '../redux/actions/index';
 
 class Login extends React.Component {
   state = {
@@ -25,10 +28,9 @@ class Login extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // const { history, dispatch } = this.props;
-    // const { email } = this.state;
-    // dispatch(addUser(email));
-    // history.push('/Game');
+    const { history, dispatch } = this.props;
+    dispatch(requestTokenFromApi());
+    history.push('/Game');
   };
 
   render() {
@@ -72,4 +74,9 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  history: PropTypes.func.isRequired,
+};
+
+export default connect()(Login);
