@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 
 class Feedback extends Component {
+  hadleClickToLogin = () => {
+    const { history } = this.props;
+    history.push('/');
+  };
+
   render() {
     const message0to3 = 'Could be better...';
     const message3OrMore = 'Well Done!';
@@ -20,13 +25,20 @@ class Feedback extends Component {
                 { message0to3 }
               </p>
             )
-              : <p data-testid="feedback-text">{message3OrMore }</p>
+              : <p data-testid="feedback-text">{ message3OrMore }</p>
           }
         </div>
         <div>
           <p data-testid="feedback-total-score">{score}</p>
           <p data-testid="feedback-total-question">{assertions}</p>
         </div>
+        <button
+          className="btn-play-again"
+          data-testid="btn-play-again"
+          onClick={ this.hadleClickToLogin }
+        >
+          Play Again
+        </button>
       </>
     );
   }
@@ -35,7 +47,7 @@ class Feedback extends Component {
 Feedback.propTypes = {
   assertions: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
-
+  history: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
