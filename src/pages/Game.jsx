@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { updateScore } from '../redux/actions';
 
+const NUM_QUESTIONS = 5;
+
 class Game extends React.Component {
   state = {
     questions: [],
@@ -83,6 +85,7 @@ class Game extends React.Component {
     const randomAnswers = answers.sort(() => (
       (Math.random() > Number('0.5')) ? 1 : Number('-1')
     ));
+
     this.setState({
       currQuestion: {
         ...question,
@@ -101,7 +104,6 @@ class Game extends React.Component {
   };
 
   requestQuestionsAndAnswers = async () => {
-    const NUM_QUESTIONS = 5;
     const token = localStorage.getItem('token');
     // const token = '47b7fa4723d34b62c2bf1260199adb43d33bed76d5e09d705831d839fb9f5567';
     const URL_API = `https://opentdb.com/api.php?amount=${NUM_QUESTIONS}&token=${token}`;
@@ -120,13 +122,17 @@ class Game extends React.Component {
   };
 
   nextQuestion = () => {
-    this.setState(
-      (prevState) => ({ currIndex: prevState.currIndex + 1 }),
-      () => {
-        const { questions, currIndex } = this.state;
-        this.updateCurrentQuestion(questions[currIndex]);
-      },
-    );
+    this.setState((prevState) => ({
+      currIndex: prevState.currIndex + 1,
+    }), () => {
+      const { questions, currIndex } = this.state;
+      const { history } = this.props;
+      const isLastQuestion = currIndex === NUM_QUESTIONS;
+      if (isLastQuestion) {
+        return history.push('/feedback');
+      }
+      this.updateCurrentQuestion(questions[currIndex]);
+    });
   };
 
   render() {
