@@ -88,6 +88,9 @@ class Game extends React.Component {
         ...question,
         randomAnswers,
       },
+      counter: 30,
+      answersIsDisabled: false,
+      showAnswersColor: false,
     });
   };
 
@@ -116,6 +119,16 @@ class Game extends React.Component {
     });
   };
 
+  nextQuestion = () => {
+    this.setState(
+      (prevState) => ({ currIndex: prevState.currIndex + 1 }),
+      () => {
+        const { questions, currIndex } = this.state;
+        this.updateCurrentQuestion(questions[currIndex]);
+      },
+    );
+  };
+
   render() {
     const {
       showAnswersColor,
@@ -139,8 +152,11 @@ class Game extends React.Component {
         <div data-testid="answer-options">
           {currQuestion.randomAnswers.map(({ text, isCorrect }) => {
             const style = {
-              border: `3px solid ${isCorrect ? 'rgb(6, 240, 15)' : 'red'}`,
+              border: '3px solid ',
             };
+            if (showAnswersColor) {
+              style.border += isCorrect ? 'rgb(6, 240, 15)' : 'red';
+            }
             if (!isCorrect) {
               index += 1;
             }
@@ -149,7 +165,7 @@ class Game extends React.Component {
                 key={ text }
                 data-testid={ isCorrect ? 'correct-answer' : `wrong-answer-${index - 1}` }
                 onClick={ () => this.pickAnswerFinish(isCorrect) }
-                style={ showAnswersColor ? style : {} }
+                style={ style }
                 disabled={ answersIsDisabled }
               >
                 { text }
@@ -157,6 +173,11 @@ class Game extends React.Component {
             );
           })}
         </div>
+        {
+          answersIsDisabled && (
+            <button data-testid="btn-next" onClick={ this.nextQuestion }>Next</button>
+          )
+        }
       </>
     );
   }
