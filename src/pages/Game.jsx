@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
+import { updateScore } from '../redux/actions';
 
 class Game extends React.Component {
   state = {
@@ -23,12 +24,39 @@ class Game extends React.Component {
     }
   }
 
-  pickAnswerFinish = () => {
+  pickAnswerFinish = (isCorrect) => {
     this.setState({
       answersIsDisabled: true,
       showAnswersColor: true,
       counter: 0,
     });
+
+    const { counter, currQuestion: {
+      difficulty,
+    } } = this.state;
+
+    const { dispatch } = this.props;
+
+    const ANSWER_SCORE = 10;
+
+    const difficultyNumber = (() => {
+      switch (difficulty) {
+      case 'hard':
+        return Number('3');
+      case 'medium':
+        return 2;
+      case 'easy':
+        return 1;
+      default:
+        return 1;
+      }
+    })();
+
+    if (isCorrect) {
+      const score = ANSWER_SCORE + (counter * difficultyNumber);
+
+      dispatch(updateScore(score));
+    }
   };
 
   initGame = async () => {
@@ -67,10 +95,6 @@ class Game extends React.Component {
     localStorage.removeItem('token');
     const { history } = this.props;
     return history.push('/');
-  };
-
-  onClickAnswer = () => {
-    this.pickAnswerFinish();
   };
 
   requestQuestionsAndAnswers = async () => {
@@ -124,7 +148,7 @@ class Game extends React.Component {
               <button
                 key={ text }
                 data-testid={ isCorrect ? 'correct-answer' : `wrong-answer-${index - 1}` }
-                onClick={ this.onClickAnswer }
+                onClick={ () => this.pickAnswerFinish(isCorrect) }
                 style={ showAnswersColor ? style : {} }
                 disabled={ answersIsDisabled }
               >
@@ -142,6 +166,7 @@ Game.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect()(Game);
