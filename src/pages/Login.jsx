@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { logIn, requestTokenFromApi } from '../redux/actions/index';
+import { logIn } from '../redux/actions/index';
+import { requestToken } from '../services/Api';
+import { saveLocalStorage } from '../services/helpers';
 
 class Login extends React.Component {
   state = {
@@ -33,7 +35,8 @@ class Login extends React.Component {
     dispatch(logIn({
       email, playerName,
     }));
-    await dispatch(requestTokenFromApi());
+    const data = await requestToken();
+    saveLocalStorage(data.token);
     history.push('/game');
   };
 
