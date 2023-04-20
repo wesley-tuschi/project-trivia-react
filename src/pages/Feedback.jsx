@@ -20,7 +20,7 @@ class Feedback extends Component {
         <Header />
         <div>
           {
-            assertions <= { three } ? (
+            assertions < three ? (
               <p data-testid="feedback-text">
                 { message0to3 }
               </p>
