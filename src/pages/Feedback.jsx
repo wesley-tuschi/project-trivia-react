@@ -9,6 +9,11 @@ class Feedback extends Component {
     history.push('/');
   };
 
+  hadleClickToRanking = () => {
+    const { history } = this.props;
+    history.push('/ranking');
+  };
+
   render() {
     const message0to3 = 'Could be better...';
     const message3OrMore = 'Well Done!';
@@ -38,6 +43,12 @@ class Feedback extends Component {
           onClick={ this.hadleClickToLogin }
         >
           Play Again
+        </button>
+        <button
+          data-testid="btn-ranking"
+          onClick={ this.hadleClickToRanking }
+        >
+          Ir para o Ranking
         </button>
       </>
     );
