@@ -40,6 +40,11 @@ class Login extends React.Component {
     history.push('/game');
   };
 
+  hadleClickToConfig = () => {
+    const { history } = this.props;
+    history.push('/config');
+  };
+
   render() {
     const { playerName, email, isButtonDisabled } = this.state;
     return (
@@ -76,6 +81,12 @@ class Login extends React.Component {
           </button>
 
         </form>
+        <button
+          data-testid="btn-settings"
+          onClick={ this.hadleClickToConfig }
+        >
+          Configurações
+        </button>
       </div>
     );
   }
