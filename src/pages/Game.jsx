@@ -75,8 +75,8 @@ class Game extends React.Component {
 
   requestQuestionsAndAnswers = async () => {
     const NUM_QUESTIONS = 5;
-    // const token = JSON.parse(localStorage.getItem('token'));
-    const token = '47b7fa4723d34b62c2bf1260199adb43d33bed76d5e09d705831d839fb9f5567';
+    const token = localStorage.getItem('token');
+    // const token = '47b7fa4723d34b62c2bf1260199adb43d33bed76d5e09d705831d839fb9f5567';
     const URL_API = `https://opentdb.com/api.php?amount=${NUM_QUESTIONS}&token=${token}`;
     const response = await fetch(URL_API);
     const data = await response.json();
