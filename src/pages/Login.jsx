@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { requestTokenFromApi } from '../redux/actions/index';
+import { logIn, requestTokenFromApi } from '../redux/actions/index';
 
 class Login extends React.Component {
   state = {
@@ -26,11 +26,15 @@ class Login extends React.Component {
     });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
+    const { email, playerName } = this.state;
     const { history, dispatch } = this.props;
-    dispatch(requestTokenFromApi());
-    history.push('/Game');
+    dispatch(logIn({
+      email, playerName,
+    }));
+    await dispatch(requestTokenFromApi());
+    history.push('/game');
   };
 
   render() {

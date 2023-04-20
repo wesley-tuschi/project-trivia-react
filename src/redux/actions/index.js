@@ -3,6 +3,7 @@ import { saveLocalStorage } from '../../services/helpers';
 
 export const REQUEST_TOKEN = 'REQUEST_TOKEN';
 export const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';
+export const LOG_IN = 'LOG_IN';
 
 export const getTokenToState = (data) => ({
   type: REQUEST_TOKEN,
@@ -25,3 +26,11 @@ export const requestQuestionsFromApi = (token) => async (dispatch) => {
   const dataQuestions = await requestQuestions(token);
   dispatch(getQuestionsToState(dataQuestions));
 };
+
+export const logIn = ({ email, playerName }) => ({
+  type: LOG_IN,
+  payload: {
+    email,
+    playerName,
+  },
+});
