@@ -1,5 +1,6 @@
 export const LOG_IN = 'LOG_IN';
 export const UPDATE_SCORE = 'UPDATE_SCORE';
+export const RESET_SCORE = 'RESET_SCORE';
 
 export const logIn = ({ email, playerName }) => ({
   type: LOG_IN,
@@ -14,4 +15,8 @@ export const updateScore = (score) => ({
   payload: {
     score,
   },
+});
+
+export const resetStore = () => ({
+  type: RESET_SCORE,
 });
