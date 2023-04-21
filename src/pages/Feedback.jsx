@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
+// import { saveRankingLocalStorage } from '../services/helpers';
+import { resetStore } from '../redux/actions/index';
 
 class Feedback extends Component {
+  // componentDidMount() {
+  //   const { name, score, gravatarEmail } = this.props;
+  //   saveRankingLocalStorage({ name, score, gravatarEmail });
+  // }
+
   hadleClickToLogin = () => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    dispatch(resetStore());
     history.push('/');
   };
 
@@ -32,8 +40,6 @@ class Feedback extends Component {
             )
               : <p data-testid="feedback-text">{ message3OrMore }</p>
           }
-        </div>
-        <div>
           <p data-testid="feedback-total-score">{score}</p>
           <p data-testid="feedback-total-question">{assertions}</p>
         </div>
@@ -61,6 +67,7 @@ Feedback.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
