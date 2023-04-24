@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { updateScore } from '../redux/actions';
-import { saveRankingLocalStorage } from '../services/helpers';
+// import { saveRankingLocalStorage } from '../services/helpers';
 
 const NUM_QUESTIONS = 5;
 
@@ -130,8 +130,8 @@ class Game extends React.Component {
       const { history } = this.props;
       const isLastQuestion = currIndex === NUM_QUESTIONS;
       if (isLastQuestion) {
-        const { name, score, gravatarEmail } = this.props;
-        saveRankingLocalStorage({ name, score, gravatarEmail });
+        // const { name, score, gravatarEmail } = this.props;
+        // saveRankingLocalStorage({ name, score, gravatarEmail });
         return history.push('/feedback');
       }
       this.updateCurrentQuestion(questions[currIndex]);
@@ -197,15 +197,15 @@ Game.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
-  score: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  gravatarEmail: PropTypes.string.isRequired,
+  // score: PropTypes.number.isRequired,
+  // name: PropTypes.string.isRequired,
+  // gravatarEmail: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  score: state.player.score,
-  name: state.player.name,
-  gravatarEmail: state.player.gravatarEmail,
-});
+// const mapStateToProps = (state) => ({
+//   score: state.player.score,
+//   name: state.player.name,
+//   gravatarEmail: state.player.gravatarEmail,
+// });
 
-export default connect(mapStateToProps)(Game);
+export default connect()(Game);
