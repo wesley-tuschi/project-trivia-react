@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
+import '../styles/Header.css';
+import triviaLogo from '../trivia.png';
 
 class Header extends React.Component {
   render() {
@@ -15,9 +17,18 @@ class Header extends React.Component {
 
     return (
       <header>
-        <img src={ gravatarImageUrl } alt="" data-testid="header-profile-picture" />
-        <p data-testid="header-player-name">{name}</p>
-        <p data-testid="header-score">{score}</p>
+        <img className="App-logo" src={ triviaLogo } alt="trivia logo" />
+        <div>
+          <div className="header-content">
+            <img src={ gravatarImageUrl } alt="" data-testid="header-profile-picture" />
+            <p>
+              Score:
+              {' '}
+              <span data-testid="header-score">{score}</span>
+            </p>
+            <p data-testid="header-player-name">{name}</p>
+          </div>
+        </div>
       </header>
     );
   }

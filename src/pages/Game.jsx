@@ -156,7 +156,6 @@ class Game extends React.Component {
       <>
         <Header />
         <div className="game-contain">
-          <h1>Game</h1>
           <p>{ counter }</p>
           <p data-testid="question-category">{ currQuestion.category }</p>
           <p data-testid="question-text">{ currQuestion.question }</p>
