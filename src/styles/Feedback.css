@@ -1,0 +1,12 @@
+p {
+  text-align: center;
+}
+
+.btn-feedback {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-feedback > button {
+  margin: 5px;
+}
