@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Login.css';
+import '../styles/Login.css';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { logIn } from '../redux/actions/index';
@@ -49,8 +49,8 @@ class Login extends React.Component {
   render() {
     const { playerName, email, isButtonDisabled } = this.state;
     return (
-      <div className='container-login'>
-        <form className='form-login'>
+      <div className="container-login">
+        <form className="form-login">
           <input
             placeholder="Enter your name"
             type="text"
@@ -81,12 +81,12 @@ class Login extends React.Component {
             Play
           </button>
 
-        <button
-          data-testid="btn-settings"
-          onClick={ this.hadleClickToConfig }
-        >
-          Configs
-        </button>
+          <button
+            data-testid="btn-settings"
+            onClick={ this.hadleClickToConfig }
+          >
+            Configs
+          </button>
         </form>
       </div>
     );
