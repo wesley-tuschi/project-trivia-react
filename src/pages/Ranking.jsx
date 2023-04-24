@@ -25,6 +25,14 @@ class Ranking extends React.Component {
 
   render() {
     const { arrayRanking } = this.state;
+    if (!arrayRanking) {
+      return (
+        <>
+          <h1 data-testid="ranking-title">Ranking</h1>
+          <p>Nenhuma pontuação cadastrada</p>
+        </>
+      );
+    }
     return (
       <>
         <h1 data-testid="ranking-title">Ranking</h1>
