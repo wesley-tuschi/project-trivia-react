@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { resetStore } from '../redux/actions/index';
+import '../styles/Ranking.css';
 
 class Ranking extends React.Component {
   constructor() {
@@ -49,12 +50,14 @@ class Ranking extends React.Component {
             }
           </ul>
         </div>
-        <button
-          data-testid="btn-go-home"
-          onClick={ this.goTheHome }
-        >
-          Home
-        </button>
+        <div className="btn-ranking">
+          <button
+            data-testid="btn-go-home"
+            onClick={ this.goTheHome }
+          >
+            Home
+          </button>
+        </div>
       </>
     );
   }

@@ -1,0 +1,29 @@
+body {
+  background-image: url('../assets/background-questions.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.game-contain {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  padding-left: 50px;
+}
+
+.answer-options {
+  display: flex;
+  flex-wrap: wrap;
+  width: 40%;
+}
+
+.answer-options > button {
+  margin: 5px;
+  max-width: 50%;
+}
+
+.btn-next {
+  margin-top: 20px;
+}

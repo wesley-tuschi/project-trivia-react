@@ -1,0 +1,28 @@
+@import url('https://fonts.cdnfonts.com/css/toony-2') ;
+
+.header-content {
+  display: flex;
+  font-family: Toony , sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  justify-content: space-between;
+  margin-top: 32px;
+  max-width: 60%;
+  padding: 0 50px;
+}
+
+.header-content > img {
+  height: 100px;
+  width: 100px;
+}
+
+header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+header > div {
+  width: 100%;
+}

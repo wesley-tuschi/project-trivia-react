@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/Login.css';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { logIn } from '../redux/actions/index';
@@ -48,10 +49,10 @@ class Login extends React.Component {
   render() {
     const { playerName, email, isButtonDisabled } = this.state;
     return (
-      <div>
-        <form>
+      <div className="container-login">
+        <form className="form-login">
           <input
-            placeholder="Digite seu nome aqui"
+            placeholder="Enter your name"
             type="text"
             className="input-name"
             data-testid="input-player-name"
@@ -61,7 +62,7 @@ class Login extends React.Component {
           />
 
           <input
-            placeholder="Digite seu email aqui"
+            placeholder="Enter your email"
             type="email"
             className="input-email"
             data-testid="input-gravatar-email"
@@ -77,16 +78,16 @@ class Login extends React.Component {
             type="submit"
             onClick={ (event) => this.handleSubmit(event) }
           >
-            Jogar
+            Play
           </button>
 
+          <button
+            data-testid="btn-settings"
+            onClick={ this.hadleClickToConfig }
+          >
+            Configs
+          </button>
         </form>
-        <button
-          data-testid="btn-settings"
-          onClick={ this.hadleClickToConfig }
-        >
-          Configurações
-        </button>
       </div>
     );
   }
