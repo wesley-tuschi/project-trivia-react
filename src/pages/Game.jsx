@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { updateScore } from '../redux/actions';
 import '../styles/Game.css';
-// import { saveRankingLocalStorage } from '../services/helpers';
 
 const NUM_QUESTIONS = 5;
 
@@ -107,7 +106,6 @@ class Game extends React.Component {
 
   requestQuestionsAndAnswers = async () => {
     const token = localStorage.getItem('token');
-    // const token = '47b7fa4723d34b62c2bf1260199adb43d33bed76d5e09d705831d839fb9f5567';
     const URL_API = `https://opentdb.com/api.php?amount=${NUM_QUESTIONS}&token=${token}`;
     const response = await fetch(URL_API);
     const data = await response.json();
@@ -129,10 +127,10 @@ class Game extends React.Component {
     }), () => {
       const { questions, currIndex } = this.state;
       const { history } = this.props;
+      console.log(currIndex);
+      console.log(NUM_QUESTIONS);
       const isLastQuestion = currIndex === NUM_QUESTIONS;
       if (isLastQuestion) {
-        // const { name, score, gravatarEmail } = this.props;
-        // saveRankingLocalStorage({ name, score, gravatarEmail });
         return history.push('/feedback');
       }
       this.updateCurrentQuestion(questions[currIndex]);
@@ -209,15 +207,6 @@ Game.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
-  // score: PropTypes.number.isRequired,
-  // name: PropTypes.string.isRequired,
-  // gravatarEmail: PropTypes.string.isRequired,
 };
-
-// const mapStateToProps = (state) => ({
-//   score: state.player.score,
-//   name: state.player.name,
-//   gravatarEmail: state.player.gravatarEmail,
-// });
 
 export default connect()(Game);
