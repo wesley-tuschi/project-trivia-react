@@ -10,13 +10,13 @@ describe('Página de Login', () => {
     userEvent.type(inputElName, 'Nome da Pessoa');
     const inputElEmail = screen.getByTestId("input-gravatar-email");
     userEvent.type(inputElEmail, 'exemplo@mail.com');
-    const btnEl = screen.getByRole('button', { name: /jogar/i });
+    const btnEl = screen.getByRole('button', { name: /play/i });
     userEvent.click(btnEl);
     await waitFor(() => expect(history.location.pathname).toBe('/game'));
   });
   test('Testa se ao clicar no botão de configurações é redirecionado para a rota de "configurações"', () => {
     const { history } = renderWithRouterAndRedux(<App />);
-    const btnEl = screen.getByRole('button', { name: /configurações/i });
+    const btnEl = screen.getByRole('button', { name: /configs/i });
     userEvent.click(btnEl);
     expect(history.location.pathname).toBe('/config');
   });

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { saveRankingLocalStorage } from '../services/helpers';
 import { resetStore } from '../redux/actions/index';
+import '../styles/Feedback.css';
 
 class Feedback extends Component {
   // componentDidMount() {
@@ -45,19 +46,21 @@ class Feedback extends Component {
           <p data-testid="feedback-total-score">{score}</p>
           <p data-testid="feedback-total-question">{assertions}</p>
         </div>
-        <button
-          className="btn-play-again"
-          data-testid="btn-play-again"
-          onClick={ this.hadleClickToLogin }
-        >
-          Play Again
-        </button>
-        <button
-          data-testid="btn-ranking"
-          onClick={ this.hadleClickToRanking }
-        >
-          Ir para o Ranking
-        </button>
+        <div className="btn-feedback">
+          <button
+            className="btn-play-again"
+            data-testid="btn-play-again"
+            onClick={ this.hadleClickToLogin }
+          >
+            Play Again
+          </button>
+          <button
+            data-testid="btn-ranking"
+            onClick={ this.hadleClickToRanking }
+          >
+            Ir para o Ranking
+          </button>
+        </div>
       </>
     );
   }
