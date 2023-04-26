@@ -1,0 +1,38 @@
+.container-config {
+  align-items: center;
+  background-image: url('../assets/trivia-background.jpg');
+  background-position: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.form-login {
+  align-items: center;
+  background-color: #f8f4e5;
+  border: 2px solid black;
+  box-shadow: 15px 15px 1px #ffec80 , 15px 15px 1px 2px black;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 300px;
+  justify-content: center;
+  padding: 50px 100px;
+  width: 30%;
+}
+
+select {
+  background-color: transparent;
+  border: none;
+  border-bottom: 5px solid black;
+  display: flex;
+  font-family: Jungle Adventurer , sans-serif;
+  font-size: large;
+}
+
+button {
+  background-color: #ffec80;
+  border: 1px solid black;
+  box-shadow: 3px 3px 1px 1px #e77306 , 3px 3px 1px 2px black;
+  padding: 8px 20px;
+}

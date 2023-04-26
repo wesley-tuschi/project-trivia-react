@@ -16,7 +16,7 @@ describe('Página de Ranking', () => {
   test('Testa se ao renderizar a página de ranking as informações de score, imagem e name são renderizadas', async () => {
     renderWithRouterAndRedux(<App />, initialState, '/feedback');
 
-    const buttonRanking = screen.getByRole('button', {  name: /ir para o ranking/i});
+    const buttonRanking = screen.getByRole('button', {  name: /go to ranking/i});
     userEvent.click(buttonRanking);
     await waitFor(() => {
       const imgElementImg = screen.getByAltText(/nome de teste/i);
@@ -32,7 +32,7 @@ describe('Página de Ranking', () => {
   test('Testa se ao renderizar a página de ranking as informações de score, imagem e name são renderizadas', async () => {
     const { history } = renderWithRouterAndRedux(<App />, initialState, '/feedback');
 
-    const buttonRanking = screen.getByRole('button', {  name: /ir para o ranking/i});
+    const buttonRanking = screen.getByRole('button', {  name: /go to ranking/i});
     userEvent.click(buttonRanking);
     await waitFor(() => {
       const buttonToHome = screen.getByRole('button', {  name: /home/i})
