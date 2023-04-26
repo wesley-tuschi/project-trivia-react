@@ -28,7 +28,7 @@
     "test:watch": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
     "test:coverage": "react-scripts test --coverage --watchAll=false",
-    "lint:styles": "npx stylelint '**/*.css'",
+    "lint:styles": "npx stylelint '**/*.css' --fix",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --fix --ext .js,.jsx"
   },
   "eslintConfig": {
