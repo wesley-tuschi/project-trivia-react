@@ -43,14 +43,10 @@ class Feedback extends Component {
             )
               : <p data-testid="feedback-text">{ message3OrMore }</p>
           }
-          <p data-testid="feedback-total-score">
-            Your score:
-            {score}
-          </p>
-          <p data-testid="feedback-total-question">
-            Your assertions:
-            {assertions}
-          </p>
+          <p>Your score</p>
+          <p data-testid="feedback-total-score">{score}</p>
+          <p>Your assertions</p>
+          <p data-testid="feedback-total-question">{assertions}</p>
         </div>
         <div className="btn-feedback">
           <button

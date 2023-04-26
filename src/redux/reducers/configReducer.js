@@ -1,7 +1,7 @@
 import { UPDATE_CONFIGS } from '../actions';
 
 const INITIAL_STATE = {
-  categoryIdSelected: 9,
+  categoryIdSelected: 0,
   dificultySelected: '',
 };
 

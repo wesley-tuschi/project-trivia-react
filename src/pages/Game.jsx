@@ -108,7 +108,7 @@ class Game extends React.Component {
     const { categoryIdSelected, dificultySelected } = this.props;
     const token = localStorage.getItem('token');
     let URL_API = `https://opentdb.com/api.php?amount=${NUM_QUESTIONS}&token=${token}`;
-    if (categoryIdSelected !== '') {
+    if (categoryIdSelected !== 0) {
       URL_API = `https://opentdb.com/api.php?amount=5&category=${categoryIdSelected}&difficulty=${dificultySelected}&token=${token}`;
     }
     const response = await fetch(URL_API);

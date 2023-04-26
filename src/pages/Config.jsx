@@ -16,13 +16,23 @@ class Config extends React.Component {
   }
 
   requestCategories = async () => {
-    const URL_API = 'https://opentdb.com/api_category.php';
+    const ERROR_CODE = 3;
+    const token = localStorage.getItem('token');
+    const URL_API = `https://opentdb.com/api_category.php?token=${token}`;
     const response = await fetch(URL_API);
-    const data = await response.json();
-    this.setState({
-      categories: data.trivia_categories,
-      categoryIdSelected: data.trivia_categories[0].id,
-    });
+    try {
+      const data = await response.json();
+
+      if (data.response_code === ERROR_CODE) {
+        this.logOut();
+      }
+      this.setState({
+        categories: data.trivia_categories,
+        categoryIdSelected: data.trivia_categories[0].id,
+      });
+    } catch (erro) {
+      console.error(erro);
+    }
   };
 
   handleChange = ({ target }) => {
