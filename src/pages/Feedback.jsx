@@ -43,8 +43,14 @@ class Feedback extends Component {
             )
               : <p data-testid="feedback-text">{ message3OrMore }</p>
           }
-          <p data-testid="feedback-total-score">{score}</p>
-          <p data-testid="feedback-total-question">{assertions}</p>
+          <p data-testid="feedback-total-score">
+            Your score:
+            {score}
+          </p>
+          <p data-testid="feedback-total-question">
+            Your assertions:
+            {assertions}
+          </p>
         </div>
         <div className="btn-feedback">
           <button
@@ -58,7 +64,7 @@ class Feedback extends Component {
             data-testid="btn-ranking"
             onClick={ this.hadleClickToRanking }
           >
-            Ir para o Ranking
+            Go to ranking
           </button>
         </div>
       </>

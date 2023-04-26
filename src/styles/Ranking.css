@@ -2,15 +2,58 @@ h1 {
   text-align: center;
 }
 
-p {
-  text-align: center;
-}
-
-.btn-ranking {
+button {
   display: flex;
   justify-content: center;
 }
 
-li {
+ul {
+  line-height: 0.5rem;
   list-style-type: none;
+  margin-top: 2rem;
+  padding: 0;
+  width: 100%;
+}
+
+li {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+main {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.ranking-container {
+  align-items: center;
+  background-color: #f8f4e5;
+  border: 2px solid black;
+  box-shadow: 15px 15px 1px #ffec80 , 15px 15px 1px 2px black;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 3rem;
+  max-width: 30rem;
+  min-height: 300px;
+  padding-bottom: 3rem;
+  width: 30%;
+}
+
+hr {
+  background-color: black;
+  border: none;
+  height: 2px;
+  width: 50%;
+}
+
+.li-0 {
+  background-image: url('../assets/trofeu.png');
+  background-repeat: no-repeat;
+  background-position: 10%;
+  background-size: 15%;
 }

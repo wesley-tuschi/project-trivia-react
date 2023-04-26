@@ -37,27 +37,29 @@ class Ranking extends React.Component {
     return (
       <>
         <h1 data-testid="ranking-title">Ranking</h1>
-        <div>
-          <ul>
-            {
-              arrayRanking.map((rank, index) => (
-                <li key={ index }>
-                  <p data-testid={ `player-name-${index}` }>{rank.name}</p>
-                  <p data-testid={ `player-score-${index}` }>{rank.score}</p>
-                  <img src={ rank.picture } alt={ rank.name } />
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-        <div className="btn-ranking">
-          <button
-            data-testid="btn-go-home"
-            onClick={ this.goTheHome }
-          >
-            Home
-          </button>
-        </div>
+        <main>
+          <div className="ranking-container">
+            <ul>
+              {
+                arrayRanking.map((rank, index) => (
+                  <li key={ index } className={ `li-${index}` }>
+                    <p data-testid={ `player-name-${index}` }>{rank.name}</p>
+                    <p data-testid={ `player-score-${index}` }>{rank.score}</p>
+                    <img src={ rank.picture } alt={ rank.name } />
+                    <hr />
+                  </li>
+                ))
+              }
+            </ul>
+            <button
+              data-testid="btn-go-home"
+              onClick={ this.goTheHome }
+            >
+              Home
+            </button>
+          </div>
+        </main>
+
       </>
     );
   }
