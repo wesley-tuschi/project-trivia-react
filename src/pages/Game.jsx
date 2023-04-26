@@ -105,8 +105,12 @@ class Game extends React.Component {
   };
 
   requestQuestionsAndAnswers = async () => {
+    const { categoryIdSelected, dificultySelected } = this.props;
     const token = localStorage.getItem('token');
-    const URL_API = `https://opentdb.com/api.php?amount=${NUM_QUESTIONS}&token=${token}`;
+    let URL_API = `https://opentdb.com/api.php?amount=${NUM_QUESTIONS}&token=${token}`;
+    if (categoryIdSelected !== '') {
+      URL_API = `https://opentdb.com/api.php?amount=5&category=${categoryIdSelected}&difficulty=${dificultySelected}&token=${token}`;
+    }
     const response = await fetch(URL_API);
     const data = await response.json();
     const ERROR_CODE = 3;
@@ -207,6 +211,13 @@ Game.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
+  categoryIdSelected: PropTypes.number.isRequired,
+  dificultySelected: PropTypes.string.isRequired,
 };
 
-export default connect()(Game);
+const mapStateToProps = (state) => ({
+  categoryIdSelected: state.config.categoryIdSelected,
+  dificultySelected: state.config.dificultySelected,
+});
+
+export default connect(mapStateToProps)(Game);
