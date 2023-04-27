@@ -16,7 +16,7 @@ describe('Página de Login', () => {
   });
   test('Testa se ao clicar no botão de configurações é redirecionado para a rota de "configurações"', () => {
     const { history } = renderWithRouterAndRedux(<App />);
-    const btnEl = screen.getByRole('button', { name: /configs/i });
+    const btnEl = screen.getByRole('button', { name: /settings/i });
     userEvent.click(btnEl);
     expect(history.location.pathname).toBe('/config');
   });

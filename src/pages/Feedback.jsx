@@ -34,7 +34,7 @@ class Feedback extends Component {
     return (
       <>
         <Header />
-        <div>
+        <div className="feedback-container">
           {
             assertions < three ? (
               <p data-testid="feedback-text">
@@ -47,21 +47,21 @@ class Feedback extends Component {
           <p data-testid="feedback-total-score">{score}</p>
           <p>Your assertions</p>
           <p data-testid="feedback-total-question">{assertions}</p>
-        </div>
-        <div className="btn-feedback">
-          <button
-            className="btn-play-again"
-            data-testid="btn-play-again"
-            onClick={ this.hadleClickToLogin }
-          >
-            Play Again
-          </button>
-          <button
-            data-testid="btn-ranking"
-            onClick={ this.hadleClickToRanking }
-          >
-            Go to ranking
-          </button>
+          <div className="btn-feedback">
+            <button
+              className="btn-play-again"
+              data-testid="btn-play-again"
+              onClick={ this.hadleClickToLogin }
+            >
+              Play Again
+            </button>
+            <button
+              data-testid="btn-ranking"
+              onClick={ this.hadleClickToRanking }
+            >
+              Go to ranking
+            </button>
+          </div>
         </div>
       </>
     );
