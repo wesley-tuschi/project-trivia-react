@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import he from 'he';
 import Header from '../components/Header';
 import { updateScore } from '../redux/actions';
 import '../styles/Game.css';
@@ -159,7 +160,7 @@ class Game extends React.Component {
           <div className="game-contain">
             <p className={ counter < timeForRed ? 'red' : null }>{ counter }</p>
             <p data-testid="question-category">{ currQuestion.category }</p>
-            <p data-testid="question-text">{ currQuestion.question }</p>
+            <p data-testid="question-text">{ he.decode(currQuestion.question) }</p>
             <div
               className="answer-options"
               data-testid="answer-options"
@@ -183,7 +184,7 @@ class Game extends React.Component {
                     style={ style }
                     disabled={ answersIsDisabled }
                   >
-                    { text }
+                    { he.decode(text) }
                   </button>
                 );
               })}
