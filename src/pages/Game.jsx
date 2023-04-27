@@ -34,16 +34,14 @@ class Game extends React.Component {
       counter: 0,
     });
 
-    const { counter, currQuestion: {
-      difficulty,
-    } } = this.state;
+    const { counter } = this.state;
 
-    const { dispatch } = this.props;
+    const { dispatch, dificultySelected } = this.props;
 
     const ANSWER_SCORE = 10;
 
     const difficultyNumber = (() => {
-      switch (difficulty) {
+      switch (dificultySelected) {
       case 'hard':
         return Number('3');
       case 'medium':
@@ -53,11 +51,10 @@ class Game extends React.Component {
       default:
         return 1;
       }
-    })();
+    });
 
     if (isCorrect) {
-      const score = ANSWER_SCORE + (counter * difficultyNumber);
-
+      const score = ANSWER_SCORE + (counter * difficultyNumber());
       dispatch(updateScore(score));
     }
   };
@@ -131,8 +128,8 @@ class Game extends React.Component {
     }), () => {
       const { questions, currIndex } = this.state;
       const { history } = this.props;
-      console.log(currIndex);
-      console.log(NUM_QUESTIONS);
+      // console.log(currIndex);
+      // console.log(NUM_QUESTIONS);
       const isLastQuestion = currIndex === NUM_QUESTIONS;
       if (isLastQuestion) {
         return history.push('/feedback');

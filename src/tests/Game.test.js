@@ -1,5 +1,5 @@
 import renderWithRouterAndRedux from "./helpers/renderWithRouterAndRedux"
-import { act, screen, waitFor } from "@testing-library/react"
+import { act, screen, waitFor, within } from "@testing-library/react"
 
 import Game from "../pages/Game"
 import userEvent from "@testing-library/user-event"
@@ -191,7 +191,7 @@ describe('Testa página "Game.js"',  () => {
     }))
     
 
-    renderWithRouterAndRedux(<App />, {
+    const { history } = renderWithRouterAndRedux(<App />, {
           player: {
             name: 'Nome de teste',
             assertions: 0,
@@ -205,4 +205,95 @@ describe('Testa página "Game.js"',  () => {
     await waitFor(() => expect(history.location.pathname).toBe("/"))
   
   })
+
+  it("deve ter a pontuação de acordo com o nível de dificuldade",  async () => {
+    global.fetch = jest.fn()
+
+    global.fetch.mockImplementationOnce(async () => ({
+      json: async () => ({
+        results: questions
+      })
+    }))
+    
+
+    renderWithRouterAndRedux(<App />, {
+      player: {
+        name: 'Nome de teste',
+        assertions: 0,
+        score: 0,
+        gravatarEmail: ''
+    },
+    config: {
+      categoryIdSelected: 0,
+      dificultySelected: 'hard',
+    }
+  }, "/game")
+
+    const correctAnswerButtonElement = await waitFor(() => screen.getByTestId("correct-answer"))
+
+    act(() => userEvent.click(correctAnswerButtonElement))
+
+    const view = screen.getByText(/score:/i);within(view).getByText(/100/i);
+  })
+
+  it("deve ter a pontuação de acordo com o nível de dificuldade",  async () => {
+    global.fetch = jest.fn()
+
+    global.fetch.mockImplementationOnce(async () => ({
+      json: async () => ({
+        results: questions
+      })
+    }))
+    
+
+    renderWithRouterAndRedux(<App />, {
+      player: {
+        name: 'Nome de teste',
+        assertions: 0,
+        score: 0,
+        gravatarEmail: ''
+    },
+    config: {
+      categoryIdSelected: 0,
+      dificultySelected: 'easy',
+    }
+  }, "/game")
+
+    const correctAnswerButtonElement = await waitFor(() => screen.getByTestId("correct-answer"))
+
+    act(() => userEvent.click(correctAnswerButtonElement))
+
+    const view = screen.getByText(/score:/i);within(view).getByText(/40/i);
+  })
+
+  it("deve ter a pontuação de acordo com o nível de dificuldade",  async () => {
+    global.fetch = jest.fn()
+
+    global.fetch.mockImplementationOnce(async () => ({
+      json: async () => ({
+        results: questions
+      })
+    }))
+    
+
+    renderWithRouterAndRedux(<App />, {
+      player: {
+        name: 'Nome de teste',
+        assertions: 0,
+        score: 0,
+        gravatarEmail: ''
+    },
+    config: {
+      categoryIdSelected: 0,
+      dificultySelected: 'medium',
+    }
+  }, "/game")
+
+    const correctAnswerButtonElement = await waitFor(() => screen.getByTestId("correct-answer"))
+
+    act(() => userEvent.click(correctAnswerButtonElement))
+
+    const view = screen.getByText(/score:/i);within(view).getByText(/70/i);
+  })
+
 })

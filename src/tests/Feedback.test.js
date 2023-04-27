@@ -37,7 +37,7 @@ describe('Página de Feedback', () => {
   test('Testa se ao clicar no botão de Play Again a página é redirecionada para a rota de Login', async () => {
     const { history } = renderWithRouterAndRedux(<App />, initialState, '/feedback');
     
-    const buttonRanking = screen.getByRole('button', {  name: /ir para o ranking/i});
+    const buttonRanking = screen.getByRole('button', {  name: /go to ranking/i});
     userEvent.click(buttonRanking);
     await waitFor(() => expect(history.location.pathname).toBe('/ranking'));
   });
