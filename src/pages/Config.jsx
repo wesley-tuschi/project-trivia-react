@@ -56,7 +56,7 @@ class Config extends React.Component {
       <div className="container-config">
 
         <form className="form-login">
-          <h2 data-testid="settings-title">Configurações</h2>
+          <h2 data-testid="settings-title">Settings</h2>
           <select
             onChange={ this.handleChange }
             name="categoryIdSelected"

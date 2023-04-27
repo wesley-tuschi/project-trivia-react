@@ -150,54 +150,57 @@ class Game extends React.Component {
     }
 
     let index = 0;
+    const timeForRed = 6;
 
     return (
       <>
         <Header />
-        <div className="game-contain">
-          <p>{ counter }</p>
-          <p data-testid="question-category">{ currQuestion.category }</p>
-          <p data-testid="question-text">{ currQuestion.question }</p>
-          <div
-            className="answer-options"
-            data-testid="answer-options"
-          >
-            {currQuestion.randomAnswers.map(({ text, isCorrect }) => {
-              const style = {
-                border: '3px solid ',
-              };
-              if (showAnswersColor) {
-                style.border += isCorrect ? 'rgb(6, 240, 15)' : 'red';
-              }
-              if (!isCorrect) {
-                index += 1;
-              }
-              return (
+        <main>
+          <div className="game-contain">
+            <p className={ counter < timeForRed ? 'red' : null }>{ counter }</p>
+            <p data-testid="question-category">{ currQuestion.category }</p>
+            <p data-testid="question-text">{ currQuestion.question }</p>
+            <div
+              className="answer-options"
+              data-testid="answer-options"
+            >
+              {currQuestion.randomAnswers.map(({ text, isCorrect }) => {
+                const style = {
+                  border: '3px solid ',
+                };
+                if (showAnswersColor) {
+                  style.border += isCorrect ? 'rgb(6, 240, 15)' : 'red';
+                }
+                if (!isCorrect) {
+                  index += 1;
+                }
+                return (
+                  <button
+                    key={ text }
+                    data-testid={ isCorrect
+                      ? 'correct-answer' : `wrong-answer-${index - 1}` }
+                    onClick={ () => this.pickAnswerFinish(isCorrect) }
+                    style={ style }
+                    disabled={ answersIsDisabled }
+                  >
+                    { text }
+                  </button>
+                );
+              })}
+            </div>
+            {
+              answersIsDisabled && (
                 <button
-                  key={ text }
-                  data-testid={ isCorrect
-                    ? 'correct-answer' : `wrong-answer-${index - 1}` }
-                  onClick={ () => this.pickAnswerFinish(isCorrect) }
-                  style={ style }
-                  disabled={ answersIsDisabled }
+                  className="btn-next"
+                  data-testid="btn-next"
+                  onClick={ this.nextQuestion }
                 >
-                  { text }
+                  Next
                 </button>
-              );
-            })}
+              )
+            }
           </div>
-          {
-            answersIsDisabled && (
-              <button
-                className="btn-next"
-                data-testid="btn-next"
-                onClick={ this.nextQuestion }
-              >
-                Next
-              </button>
-            )
-          }
-        </div>
+        </main>
       </>
     );
   }

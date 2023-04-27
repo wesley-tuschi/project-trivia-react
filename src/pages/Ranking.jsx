@@ -37,7 +37,7 @@ class Ranking extends React.Component {
     return (
       <>
         <h1 data-testid="ranking-title">Ranking</h1>
-        <main>
+        <div className="main-ranking">
           <div className="ranking-container">
             <ul>
               {
@@ -58,7 +58,7 @@ class Ranking extends React.Component {
               Home
             </button>
           </div>
-        </main>
+        </div>
 
       </>
     );

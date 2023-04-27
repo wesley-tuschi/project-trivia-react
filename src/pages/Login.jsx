@@ -85,7 +85,7 @@ class Login extends React.Component {
             data-testid="btn-settings"
             onClick={ this.hadleClickToConfig }
           >
-            Configs
+            Settings
           </button>
         </form>
       </div>

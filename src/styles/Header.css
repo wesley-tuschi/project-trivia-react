@@ -26,3 +26,17 @@ header {
 header > div {
   width: 100%;
 }
+
+@media screen and ( max-width : 640px ) {
+
+  .header-content {
+    flex-wrap: wrap;
+    font-size: 1.5rem;
+    max-width: 100%;
+  }
+
+  .header-content > img {
+    height: 80px;
+    width: 80px;
+  }
+}
